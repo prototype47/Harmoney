@@ -1,17 +1,26 @@
 import React, { useEffect, useRef } from 'react';
 import { Grid } from '@material-ui/core';
 import { PushToTalkButton, PushToTalkButtonContainer } from '@speechly/react-ui';
-import { useSpeechContext, SpeechState } from '@speechly/react-client';
+// import { useSpeechContext, SpeechState } from '@speechly/react-client';
 import Main from './components/Main/Main';
 import Details from './components/Details/Details';
 import useStyles from './appStyles';
+import ReactGA from 'react-ga';
+
+
+const TRACKING_ID = "UA-260626498-2"; // YOUR_OWN_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
 
 const App = () => {
 
     const classes = useStyles();
-    const { speechState } = useSpeechContext();
+    // const { speechState } = useSpeechContext();
     const main = useRef(null);
-    const executeScroll = () => main.current.scrollIntoView();
+    // const executeScroll = () => main.current.scrollIntoView();
+
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+    }, []);
 
     // useEffect(() => {
     //     if(speechState === SpeechState.Recording) {

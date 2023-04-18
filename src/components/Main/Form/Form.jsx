@@ -7,6 +7,7 @@ import { incomeCategories, expenseCategories } from '../../../constants/categori
 import formatDate from '../../../utils/formatDate';
 import { useSpeechContext } from '@speechly/react-client';
 import CustomizedSnackbar from '../../Snackbar/Snackbar';
+import ReactGA from 'react-ga';
 
 const initialState = {
     amount: '',
@@ -25,6 +26,13 @@ const Form = () => {
     const selectedCategories = formData.type === 'Income' ? incomeCategories : expenseCategories;
 
     const createTransaction = () => {
+
+        ReactGA.event({
+            category: 'Transaction',
+            action: 'Created a transaction',
+            label: 'Transaction',
+        })
+
         if(Number.isNaN(Number(formData.amount)) || !formData.date.includes('-')) return;
         
         const transaction = { ...formData, amount: Number(formData.amount), id: uuidv4() };

@@ -8,3 +8,12 @@ body
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./assets/money.jpg") no-repeat center center fixed;
     background-size: cover;
 }
+::-webkit-scrollbar {
+    width: 15px;    
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(99, 99, 99);
+}
+::-webkit-scrollbar-track {
+    background: #4f4f4f;
+}
